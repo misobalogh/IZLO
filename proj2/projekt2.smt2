@@ -42,20 +42,23 @@
 ;;;;;;;; START OF SOLUTION ;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; pocet porci musi byt nezaporny
 (assert (and ( >= n1 0) ( >= n2 0) ( >= n3 0) ( >= n4 0) ( >= n5 0)))
 
-
 ; 1. podmienka:
+;                     n1*c1 + ... + n5*c5 ≤ max_cena 
 (assert (<= (+ (* n1 c1) (* n2 c2) (* n3 c3) (* n4 c4) (* n5 c5)) max_cena))
 
 ; 2. podmienka:
+;             ∀n1,...,n5, i ∈ {1,...,5}: (0 ≤ ni ≤ mi)
 (assert (and (<= n1 m1) (<= n2 m2) (<= n3 m3) (<= n4 m4) (<= n5 m5)))
 
 ; optimalne kaloricke hodnoty - premenna 'best'
 (assert (= best (+ (* n1 k1) (* n2 k2) (* n3 k3) (* n4 k4) (* n5 k5))))
 
 ; 3. podmienka
-; ∀p1, p2, p3, p4, p5. ((p1 ≤ m1 ∧ p2 ≤ m2 ∧ p3 ≤ m3 ∧ p4 ≤ m4 ∧ p5 ≤ m5 ∧ p1 ≥ 0 ∧ p2 ≥ 0 ∧ p3 ≥ 0 ∧ p4 ≥ 0 ∧ p5 ≥ 0 ∧ p1c1 + p2c2 + p3c3 + p4c4 + p5c5 ≤ max_cena) → p1k1 + p2k2 + p3k3 + p4k4 + p5k5 ≤ best)
+;                              1.podmienka ∧  2.podmienka                    → kalorie mensie ako best
+; ∀p1,...,p5, i ∈ {1,...,5}: ((0 ≤ pi ≤ mi ∧ p1*c1 + ... + p5*c5 ≤ max_cena) → p1k1 + p2k2 + p3k3 + p4k4 + p5k5 ≤ best)
 (assert 
   (forall ((p1 Int) (p2 Int) (p3 Int) (p4 Int) (p5 Int))
     (=> (and (<= p1 m1) (<= p2 m2) (<= p3 m3) (<= p4 m4) (<= p5 m5) (>= p1 0) (>= p2 0) (>= p3 0) (>= p4 0) (>= p5 0)
