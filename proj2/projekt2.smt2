@@ -1,3 +1,8 @@
+; Riesenie projektu 2 z predmetu IZLO
+; Autor: Michal Balogh, xbalog06
+; Datum: 01.05.2023
+; FIT VUT BRNO
+
 (set-logic NIA)
 
 (set-option :produce-models true)
